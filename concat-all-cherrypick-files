@@ -3,7 +3,7 @@ import pandas as pd
 
 all_data = pd.DataFrame()
 
-for f in glob.glob("S:\\RWC\Automation_Data\System 4a\CherryPick\Hybridoma\*.xls"):
+for f in glob.glob("S:\\RWC\Automation_Data\System4a\CherryPick\Hybridoma\*.xls"):
     df = pd.read_excel(f)
     all_data = all_data.append(df,ignore_index=True)
     
