@@ -1,0 +1,11 @@
+import glob
+import pandas as pd
+
+all_data = pd.DataFrame()
+
+for f in glob.glob("S:\\RWC\Automation_Data\System 4a\CherryPick\Hybridoma\*.xls"):
+    df = pd.read_excel(f)
+    all_data = all_data.append(df,ignore_index=True)
+    
+all_data[['plate', 'row', 'col']] = all_data['Well'].str.extract('(\d+\.?\d*)([A-Za-z]+)(\d+\.?\d*)', expand = True)
+all_data.to_excel("S:\\RWC\Benchtops_Shared\Hybridoma\output.xls")
