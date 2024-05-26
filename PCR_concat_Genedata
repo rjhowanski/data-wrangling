@@ -1,0 +1,43 @@
+import sys
+import csv
+import pandas as pd
+import glob
+
+path = 'S:\\\RWC\Benchtops_Shared\Howanski\Experiments and Analysis\@ Hybridoma Meta Analysis\Project_Fusion_Flatview\SBC\\'
+filenames = glob.glob(path + "*.xlsx")
+concat = pd.DataFrame()
+
+for file in filenames:
+    
+    all_data = pd.read_excel(file)
+    pcr = all_data.filter(like= 'PCR Fragment Analysis',axis=1)
+    comment = pcr.filter(like= 'Comments',axis=1)
+    vh = comment.filter(like= 'VH',axis=1)
+    
+    if len(vh.columns)==0:
+        pass
+        if len(vh.columns)>1:
+            vh.columns=['VH','VH2']
+            vh['VH'].fillna(df['VH2'])
+    else:
+        vh.columns=['VH']
+        #return vh
+    
+    vl = comment.filter(like= 'VL',axis=1)
+    if len(vl.columns)==0:
+        pass
+        if len(vl.columns)>1:
+            vl.columns=['VL','VL2']
+            vl['VL'].fillna(df['VL2'])
+    else:
+        vl.columns=['VL']
+        #return vl
+
+    clones = start.filter(like= 'Antibody Clone_Name',axis=1)
+    
+    df = pd.concat([clones,vh,vl], axis=1)
+
+    # Appending excel files one by one
+    concat = concat.append(df, ignore_index=True)
+    
+concat.to_excel(r'S:\\RWC\Benchtops_Shared\Howanski\Experiments and Analysis\@ Hybridoma Meta Analysis\PCR_Fragment_Analysis_Output.xls')
