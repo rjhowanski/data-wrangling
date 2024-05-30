@@ -7,7 +7,7 @@ import csv
 import pandas as pd
 import glob
 
-path = 'S:\\\RWC\Benchtops_Shared\Howanski\Experiments and Analysis\@ Hybridoma Meta Analysis\Project_Fusion_Flatview\SBC\\'
+path = 'S:\\\RWC\...\Project_Fusion_Flatview\SBC\\'
 filenames = glob.glob(path + "*.xlsx")
 concat = pd.DataFrame()
 
@@ -44,4 +44,4 @@ for file in filenames:
     # Appending excel files one by one
     concat = concat.append(df, ignore_index=True)
     
-concat.to_excel(r'S:\\RWC\Benchtops_Shared\Howanski\Experiments and Analysis\@ Hybridoma Meta Analysis\PCR_Fragment_Analysis_Output.xls')
+concat.to_excel(r'S:\\RWC\...\PCR_Fragment_Analysis_Output.xls')
